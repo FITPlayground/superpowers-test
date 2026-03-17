@@ -12,10 +12,10 @@ auth_site_url: https://fitautomate.com
 auth_redirect_urls:
   - https://tools.fitautomate.com/login
   - https://n8n-insights.fitautomate.com/login
-  - https://liquid-financial-demo.vercel.app/login
-  - https://liquid-financial-demo.vercel.app
+  - https://fit-web-pro.fitautomate.com/
+  - https://fit-web-pro.fitautomate.com/login 
   # Add localhost/preview as needed for dev:
-  - http://localhost:3000/login
+  - http://localhost:4002/login
   # - http://localhost:4001/login
   # - http://localhost:5173/login
 
