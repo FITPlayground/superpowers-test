@@ -56,7 +56,7 @@ One exported object; all public content and links read from it. One file swap pe
 ## 3. Auth, client portal, admin
 
 - **Auth:** Supabase Auth (email/password; magic link optional). `/login` redirects by role (client → `/portal`, admin → `/admin`).
-- **Roles:** Resolved from `fit-accounting-demo.profiles` by `auth.uid()`. Middleware protects `/portal` (client or admin) and `/admin` (admin only).
+- **Roles:** Resolved from `fit_accounting_demo.profiles` by `auth.uid()`. Middleware protects `/portal` (client or admin) and `/admin` (admin only).
 - **Client portal:** Upload (Supabase Storage + metadata), downloads list (forms/docs), optional “Your submissions” with status.
 - **Admin:** Clients list; per-client uploads with download and “Mark as reviewed”; optional upload of portal downloads/forms. No inbox; manual workflow.
 - No FIT Automate ongoing maintenance (no scheduled jobs, no n8n).
@@ -65,7 +65,7 @@ One exported object; all public content and links read from it. One file swap pe
 
 ## 4. Supabase schema & RLS
 
-**Schema:** `fit-accounting-demo`.
+**Schema:** `fit_accounting_demo`.
 
 **Tables:**
 
@@ -110,18 +110,18 @@ No other Vercel-specific config required for a standard Next.js App Router app.
 
 **You need to do:**
 
-1. **Schema:** Create schema `fit-accounting-demo` and run migrations (tables + RLS + storage buckets) in that project.
+1. **Schema:** Create schema `fit_accounting_demo` and run migrations (tables + RLS + storage buckets) in that project. Phase 4.1 migration file: `supabase/migrations/20260317_fit_accounting_demo_schema.sql`.
 2. **Auth redirect URLs:** In Supabase Dashboard → Auth → URL Configuration → Redirect URLs, add:
    - Production: `https://liquid-financial-demo.vercel.app/login` (or final domain)
    - Preview: `https://*.vercel.app/login` if you use preview deployments
    - Local: `http://localhost:3000/login` (or your dev port)
    - Also add these to `.agent/platforms/supabase.yaml` under `auth_redirect_urls`.
-3. **Expose schema:** Ensure `fit-accounting-demo` is in `pgrst.db_schemas` for the project (and in `schemas` in `supabase.yaml`).
+3. **Expose schema:** Ensure `fit_accounting_demo` is in `pgrst.db_schemas` for the project (and in `schemas` in `supabase.yaml`).
 4. **Env in Vercel (and local):** Set:
    - `NEXT_PUBLIC_SUPABASE_URL` = project URL (no path)
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = anon key
    - `SUPABASE_SERVICE_ROLE_KEY` = service role key (server-only; for admin and RLS bypass where needed)
-   - Optional: `SUPABASE_DB_SCHEMA=fit-accounting-demo` if your client defaults to it
+   - Optional: `SUPABASE_DB_SCHEMA=fit_accounting_demo` if your client defaults to it
 
 **Summary:** Supabase is “connected” once (a) the schema and policies exist in the existing project, (b) redirect URLs include this app’s URLs, and (c) the app’s env vars point at that project. No separate “connect” step in Vercel for Supabase; connection is via env vars.
 
@@ -149,7 +149,7 @@ No other Vercel-specific config required for a standard Next.js App Router app.
 
 ### Supabase (shared project)
 
-- [ ] Create schema `fit_accounting_demo` and run migrations (tables + RLS)
+- [ ] Create schema `fit_accounting_demo` and run migrations (tables + RLS), including `supabase/migrations/20260317_fit_accounting_demo_schema.sql`
 - [ ] Create storage buckets `client-uploads`, `portal-downloads` with RLS
 - [ ] Add Auth redirect URLs (see §7) in Dashboard and in `.agent/platforms/supabase.yaml`
 - [ ] Insert Stanley's admin profile after first login (user_id from Auth)
