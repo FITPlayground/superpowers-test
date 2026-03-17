@@ -1,0 +1,27 @@
+# FIT Automate — Supabase project config (authoritative)
+# Reference: .agent/supabase.md and .cursor/skills/supabase/SKILL.md
+# Updated: 2026-03-16 (fit-tools auth rollout)
+
+project: FIT Automate
+url: https://dpupymjdqlfsdfsaxolj.supabase.co
+auth_site_url: https://fitautomate.com
+
+# Multi-app auth: every app using this project must list its /login URL here
+# and in Supabase Dashboard → Auth → URL Configuration → Redirect URLs.
+# See skill section "Multi-app auth configuration".
+auth_redirect_urls:
+  - https://tools.fitautomate.com/login
+  - https://n8n-insights.fitautomate.com/login
+  - https://liquid-financial-demo.vercel.app/login
+  - https://liquid-financial-demo.vercel.app
+  # Add localhost/preview as needed for dev:
+  - http://localhost:3000/login
+  # - http://localhost:4001/login
+  # - http://localhost:5173/login
+
+schemas:
+  - n8n_inventory
+  - fit_accounting_demo
+  # Add app-specific schemas as apps adopt Supabase data
+
+note: "Site URL must be root domain. Every app /login must be explicitly listed in Auth URL Configuration."
