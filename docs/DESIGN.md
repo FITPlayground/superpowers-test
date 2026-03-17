@@ -138,4 +138,22 @@ No other Vercel-specific config required for a standard Next.js App Router app.
 
 ---
 
-*Design approved. Implementation plan: `docs/plans/YYYY-MM-DD-fit-accounting-implementation.md`.*
+## 9. Quick checklists
+
+### Vercel (project: liquid-financial-demo)
+
+- [ ] Create new project in Vercel named **liquid-financial-demo**
+- [ ] Connect this repo (GitHub import); framework = Next.js
+- [ ] Add env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_SITE_URL` (e.g. `https://liquid-financial-demo.vercel.app`), optional `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- [ ] Deploy; add custom domain if needed
+
+### Supabase (shared project)
+
+- [ ] Create schema `fit_accounting_demo` and run migrations (tables + RLS)
+- [ ] Create storage buckets `client-uploads`, `portal-downloads` with RLS
+- [ ] Add Auth redirect URLs (see §7) in Dashboard and in `.agent/platforms/supabase.yaml`
+- [ ] Insert Stanley's admin profile after first login (user_id from Auth)
+
+---
+
+*Design approved. Implementation plan: `docs/plans/2026-03-17-fit-accounting-implementation.md`.*
